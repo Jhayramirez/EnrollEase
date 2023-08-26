@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('principals_and_administrators', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('FirstName');
+            $table->string('MiddleName');
+            $table->string('LastName');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('_password');
+            $table->string('role'); // You might use roles like 'principal' or 'administrator'
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('principals_and_administrators');
     }
 };
