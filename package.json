@@ -12,10 +12,17 @@
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
         "axios": "^0.25",
-        "bootstrap": "^5.2.3",
+        "bootstrap": "^5.3.1",
+        "laravel-datatables-vite": "^0.5.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
-        "sass": "^1.56.1"
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.56.1",
+        "sass-loader": "^12.1.0"
+    },
+    "dependencies": {
+        "alpinejs": "^3.13.0",
+        "datatables.net": "^1.13.6"
     }
 }

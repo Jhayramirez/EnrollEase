@@ -1,0 +1,4 @@
+.dropdown-item:hover {
+    background-color: #f8f9fa; /* Change this to the desired highlight color */
+    color: #000; /* Change this to the desired text color */
+}

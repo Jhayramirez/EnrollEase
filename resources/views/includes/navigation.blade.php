@@ -22,7 +22,11 @@
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+                @if(Auth::check())
+                <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
+                @else
                 <a class="nav-link" href="{{route('login')}}">Login</a>
+                @endif
             </li>
         </ul>
     </div>

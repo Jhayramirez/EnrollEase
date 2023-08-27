@@ -38,20 +38,28 @@ class EnrollmentController extends Controller
         ]);
 
         $fullName = "{$request->input('ch_FirstName')} {$request->input('ch_MiddleName')} {$request->input('ch_LastName')}";
+        $prFullname = "{$request->input('pr_FirstName')} {$request->input('pr_MiddleName')} {$request->input('pr_LastName')}";
         $mailData = [
             'title' => 'EnrollEase ',
             'body' => 'Thank you for enrolling your child. We have received the following details:',
             'childName' => $fullName,
             'childBirthday' => $request->input('birthday'),
             'lrnOrStudentId' => $request->input('lrn_or_student_id'),
-            'parentName' => $request->input('pr_FirstName'),
-            'parentContactNumber' => $request->input('pr_MiddleName'),
-            'parentEmail' => $request->input('pr_LastName'),
+            'parentName' =>   $prFullname,
+            'parentContactNumber' => $request->input('parent_contact_number'),
+            'parentEmail' => $request->input('parent_email'),
             'parentRelationship' => $request->input('parent_relationship')
         ];
 
 
-        Enrollment::create(array_merge($request->all(), ['status' => 'pending']));
+        Enrollment::create(array_merge(
+            $request->all(),
+            [
+                'status' => 'pending',
+                'ch_fullname' => $fullName,
+                'pr_fullname' => $prFullname,
+            ]
+        ));
         Alert::success('Success!', 'Enrollment record created successfully! An email will be sent for further instructions.');
         Mail::to($request->input('parent_email'))->send(new NotifyMail($mailData));
 

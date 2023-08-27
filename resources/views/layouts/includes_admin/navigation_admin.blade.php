@@ -13,10 +13,19 @@
                     <a class="nav-link" href="{{route('enrollmentform')}}">Enrollment</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Archive</a>
+                    <a class="nav-link" href="#">Exports</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Exports</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span> Records </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="{{route('rejectRecords')}}">Reject</a>
+                        <a class="dropdown-item" href="{{route('approvedRecords')}}">Approved</a>
+                        <a class="dropdown-item" href="{{route('allRecords')}}">All Records</a>
+                    </div>
+                </li>
                 </li>
                 <!-- Add more navigation items as needed -->
             </ul>

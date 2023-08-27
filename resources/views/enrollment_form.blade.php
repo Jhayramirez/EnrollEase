@@ -62,9 +62,8 @@
     </form>
 </div>
 
-<!-- helps and stop the user to input alphabets (numerical characters only) -->
 <script>
-    document.getElementById("parentContactNumber").addEventListener("input", function() {
+    document.getElementById("parent_contact_number").addEventListener("input", function() {
         this.value = this.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
     });
 </script>
