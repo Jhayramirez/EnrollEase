@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('pr_MiddleName');
             $table->string('pr_LastName');
             $table->string('parent_contact_number');
-            $table->string('parent_email')->unique();
+            $table->string('parent_email');
             $table->string('parent_relationship');
             $table->string('status'); // For example: 'pending', 'approved', 'rejected'
             $table->timestamps();

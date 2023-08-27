@@ -6,7 +6,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
@@ -17,12 +17,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="{{route('login')}}">Login</a>
             </li>
         </ul>
     </div>

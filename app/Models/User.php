@@ -17,19 +17,28 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
+    protected $table = 'users';
+
+    protected $fillable = [
+        'FirstName',
+        'MiddleName',
+        'LastName',
+        'email',
+        '_password', // Assuming this is your hashed password column
+        'role',
+    ];
+    public function getAuthPassword()
+    {
+        return $this->_password;
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        '_password',
         'remember_token',
     ];
 
