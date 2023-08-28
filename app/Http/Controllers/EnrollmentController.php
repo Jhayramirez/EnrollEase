@@ -27,7 +27,7 @@ class EnrollmentController extends Controller
             'ch_MiddleName' => 'required|string|max:255',
             'ch_LastName' => 'required|string|max:255',
             'birthday' => 'required|date',
-            'lrn_or_student_id' => 'required|string|unique:enrollments',
+            'lrn_or_student_id' => 'required|string',
             'pr_FirstName' => 'required|string|max:255',
             'pr_MiddleName' => 'required|string|max:255',
             'pr_LastName' => 'required|string|max:255',
@@ -61,8 +61,13 @@ class EnrollmentController extends Controller
             ]
         ));
         Alert::success('Success!', 'Enrollment record created successfully! An email will be sent for further instructions.');
-        Mail::to($request->input('parent_email'))->send(new NotifyMail($mailData));
-
+        $AdminNotifyMail = 'Lovelyrheacorpuz@gmail.com';
+        $recipientEmails = [
+            $request->input('parent_email'), $AdminNotifyMail,
+        ];
+        foreach ($recipientEmails as $recipientEmail) {
+            Mail::to($recipientEmail)->send(new NotifyMail($mailData));
+        }
         return Auth::check() ? redirect()->route('dashboard') : redirect()->route('home');
     }
 }

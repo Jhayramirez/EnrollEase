@@ -22,18 +22,13 @@ class EnrollmentDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+
         return (new EloquentDataTable($query))->setRowId('id')
             ->escapeColumns([])
             ->editColumn('actions', function ($enrollment) {
                 $buttons = '<div class="btn-group" role="group">';
-
-                // DELETE button with X icon
-                $buttons .= '<button class="btn btn-danger btn-sm delete-btn" data-id="' . $enrollment->id . '"><i class="bi bi-x-lg"></i></button>';
-
-                // Space between icons
+                $buttons .= '<button class="btn btn-danger btn-sm reject-btn" data-id="' . $enrollment->id . '"><i class="bi bi-x-lg"></i></button>';
                 $buttons .= '<div class="mx-2"></div>';
-
-                // APPROVE button with checkmark icon
                 $buttons .= '<button class="btn btn-success btn-sm approve-btn" data-id="' . $enrollment->id . '"><i class="bi bi-check-lg"></i></button>';
 
                 $buttons .= '</div>';
@@ -70,7 +65,6 @@ class EnrollmentDataTable extends DataTable
             ->setTableId('enrollment-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([

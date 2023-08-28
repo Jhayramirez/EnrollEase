@@ -5,43 +5,50 @@
     <div class="card-header">Manage Users</div>
     <div class="card-body">
         <div class="table-responsive">
-            {{ $dataTable->table() }}
+            {{ $dataTable->table(['id' => 'enrollmentTable']) }}
         </div>
     </div>
 </div>
 
 @endsection
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         $(document).on('click', '.delete-btn', function() {
             var enrollmentId = $(this).data('id');
             swal({
-                title: "Delete?",
+                title: "Reject?",
                 text: "Please ensure and then confirm!",
                 type: "warning",
                 showCancelButton: !0,
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: "Yes, reject it!",
                 cancelButtonText: "No, cancel!",
                 reverseButtons: !0
             }).then(function(e) {
 
                 if (e.value === true) {
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
+                    // Use the correct variable name (enrollmentId) in the URL
                     $.ajax({
-                        type: 'POST',
-                        url: "{{url('/users')}}/" + id,
+                        type: 'PUT',
+                        url: "{{ route('rejectRecords') }}/" + enrollmentId,
                         data: {
                             _token: CSRF_TOKEN
                         },
                         dataType: 'JSON',
-                        success: function(results) {
+                        success: function(response) {
+                            console.log(response.error)
+                            if (response.success) {
+                                var enrollmentTable = $('#enrollmentTable').DataTable();
+                                enrollmentTable.ajax.reload();
+                                swal("Done!", response.message, "success");
 
-                            if (results.success === true) {
-                                swal("Done!", results.message, "success");
                             } else {
-                                swal("Error!", results.message, "error");
+                                swal("Error!", response.message, "error");
                             }
+                        },
+                        error: function(xhr, textStatus, errorThrown) {
+                            console.error(xhr.responseText);
+                            swal("Error!", "An error occurred while processing the request.", "error");
                         }
                     });
 
@@ -62,7 +69,7 @@
         });
     });
 </script>
-
+ -->
 
 
 

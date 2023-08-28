@@ -35,4 +35,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/approvedRecords', [DataManagement::class, 'showApprovedRecords'])->name('approvedRecords');
     Route::get('/rejectRecords', [DataManagement::class, 'showRejectRecords'])->name('rejectRecords');
     Route::get('/allRecords', [DataManagement::class, 'showAllRecords'])->name('allRecords');
+    Route::put('/dashboard/{enrolleeId}/{status}', [DataManagement::class, 'update'])->name('recordsUpdate');
 });
