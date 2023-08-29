@@ -9,6 +9,7 @@ use DataTables;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifyMail;
+use App\Mail\NotifyProcedure;
 use App\Mail\NotifyRecord;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,6 +44,16 @@ class DataManagement extends Controller
         $enrollment->save();
         Mail::to($enrollment->parent_email)->send(new NotifyRecord($mailData, $status));
         return response()->json(['success' => true, 'message' => 'Enrollment List Updated Successfully!']);
+    }
+    public function procedureUrl(Request $request)
+    {
+        $enrollmentLink = route('enrollmentform');
+        $mailData = [
+            'title' => 'EnrollEase',
+            'body' => "Thank you for enrolling your child. Here's your enrollment procedure:",
+        ];
+        Mail::to($request->input('email'))->send(new NotifyProcedure($mailData, $enrollmentLink));
+        return response()->json(['success' => true, 'message' => 'Enrollment Procedure Sent!']);
     }
 
     // Archive Records

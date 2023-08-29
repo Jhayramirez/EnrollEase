@@ -21,6 +21,7 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 // Enrollment Routes (both for user and admins)
+Route::put('/procedure', [DataManagement::class, 'procedureUrl'])->name('procedureUrl');
 Route::get('/enrollment-form', [EnrollmentController::class, 'showEnrollmentForm'])->name('enrollmentform');
 Route::post('/enrollment-form', [EnrollmentController::class, 'store'])->name('enrollment.store');
 

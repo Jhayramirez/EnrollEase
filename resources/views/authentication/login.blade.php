@@ -20,7 +20,6 @@
                         <a href="{{ route('home') }}" class="btn btn-secondary">Back</a>
                     </div>
                 </form>
-                <p class="text-center mt-3">Don't have an account? <a href="{{route('home')}}">Sign Up</a></p>
             </div>
         </div>
     </div>

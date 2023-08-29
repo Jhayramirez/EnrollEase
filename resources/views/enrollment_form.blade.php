@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1>Child Information Form</h1>
+    <h1>EnrollEase - Enrollment Form</h1>
     <form method="POST" action="{{route('enrollment.store')}}">
         @csrf
         <div class="row mb-3">

@@ -23,8 +23,8 @@
                 text: "Please ensure and then confirm!",
                 type: "warning",
                 showCancelButton: !0,
-                confirmButtonText: "Yes, reject it!",
-                cancelButtonText: "No, cancel!",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
                 reverseButtons: !0
             }).then(function(e) {
 
@@ -72,8 +72,8 @@
                 text: "Please ensure and then confirm!",
                 type: "warning",
                 showCancelButton: !0,
-                confirmButtonText: "Yes, approve it!",
-                cancelButtonText: "No, cancel!",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
                 reverseButtons: !0
             }).then(function(e) {
 

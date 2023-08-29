@@ -11,6 +11,7 @@ use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Route;
 
 class EnrollmentDataTable extends DataTable
 {
@@ -82,8 +83,7 @@ class EnrollmentDataTable extends DataTable
      */
     public function getColumns(): array
     {
-        return [
-
+        $columns = [
             Column::make('id')->title('Id'),
             Column::make('ch_fullname')->title('Child Name'),
             Column::make('birthday')->title('Birthday'),
@@ -93,15 +93,21 @@ class EnrollmentDataTable extends DataTable
             Column::make('parent_email')->title('Email'),
             Column::make('parent_relationship')->title('Parent Relationship'),
             Column::make('status')->title('Status'),
-            Column::computed('actions')
+        ];
+
+        $currentRoute = Route::currentRouteName();
+        $excludedRoutes = ['approvedRecords', 'rejectRecords', 'allRecords'];
+        if (!in_array($currentRoute, $excludedRoutes)) {
+            $columns[] = Column::computed('actions')
                 ->title('Actions')
                 ->exportable(false)
                 ->printable(false)
                 ->width(100)
                 ->addClass('text-center')
-                ->footer('')
+                ->footer('');
+        }
 
-        ];
+        return $columns;
     }
 
     /**

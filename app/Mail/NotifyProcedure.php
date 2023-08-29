@@ -9,20 +9,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NotifyMail extends Mailable
+class NotifyProcedure extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $mailData;
+    public $enrollmentLink;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($mailData, $enrollmentLink)
     {
         $this->mailData = $mailData;
+        $this->enrollmentLink = $enrollmentLink;
     }
 
     /**
@@ -32,7 +34,11 @@ class NotifyMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('EnrollEase - Enrollment Information')
-            ->view('mail.email_sent');
+        return $this->subject('EnrollEase - Enrollment Procedure')
+            ->view('mail.email_procedure')
+            ->with([
+                'mailData' => $this->mailData,
+                'enrollmentLink' => $this->enrollmentLink,
+            ]);
     }
 }
