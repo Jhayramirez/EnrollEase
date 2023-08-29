@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','Archive')
 @section('content')
+<br>
 <div class="card">
     <div class="card-header">Manage Users</div>
     <div class="card-body">
